@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	 <properties resource="jdbc-develop.properties"></properties>
+	 
+	 <settings>
+	 	<setting name="logImpl" value="LOG4J"/>
+	 </settings>
+	 
+    <!-- 别名 -->
+    <typeAliases>
+		<!-- 后面书写类全名时默认加该包名前缀如：<resultMap type="User"... -->
+    	<package name="com.wdk.entity"/>
+    </typeAliases>
+    
+    <environments default="development">
+    <environment id="development">
+      <transactionManager type="JDBC"/>
+      <dataSource type="POOLED">
+        <!-- <property name="driver" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://127.0.0.1:3306/guns"/>
+        <property name="username" value="root"/>
+        <property name="password" value="root"/> -->
+        
+        <property name="driver" value="${jdbc.driverClassName}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+        
+      </dataSource>
+    </environment>
+  </environments>
+    
+    <mappers>
+    	<mapper resource="com/wdk/mapping/MenuMapper.xml"/>
+    </mappers>
+    
+	<!-- <plugins>
+       <plugin interceptor="com.bjnaxl.framework.common.DataAuthorityInterceptor">
+       		数据库类型： mysql 或  oracle 或  sqlserver
+       		<property name="databaseType" value="mysql"/>
+       </plugin>
+       <plugin interceptor="com.github.pagehelper.PageHelper">
+			 设置数据库类型 Oracle,Mysql,MariaDB,SQLite,Hsqldb,PostgreSQL六种数据库        
+            <property name="dialect" value="mysql"/>
+       </plugin>
+    </plugins> -->
+</configuration>
